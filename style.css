@@ -5,7 +5,45 @@
 .todo-container {
 	width: 30%;
 	height: 500px;
-	background-color: #eee;
-	border: 1px solid #000;
+	background-color: rgb(241, 241, 241);
+	border: 1px solid rgb(0, 0, 0);
 	overflow-x: auto;
+}
+
+.todo-item {
+	padding: 10px;
+	font-size: 14px;
+	font-weight: 700;
+	word-wrap: break-word;
+	position: relative;
+	cursor: pointer;
+	border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.todo-item:hover {
+	color: rgb(0, 0, 0);
+}
+
+.not-compleat {
+	background-color: rgb(248, 230, 149);
+	color: rgb(156, 146, 2);
+}
+
+.compleat {
+	background-color: rgb(178, 243, 140);
+	color: rgb(0, 158, 13);
+}
+
+.close {
+	font-size: 10px;
+	position: absolute;
+	right: 3px;
+	top: 3px;
+	border: 0;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.close:hover {
+	color:rgb(218, 27, 27);
 }
