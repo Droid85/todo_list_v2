@@ -1,7 +1,9 @@
 const inputEl = document.querySelector('#input-todo');
 const addBtnEl = document.querySelector('#add-btn');
 const todoBlockEl = document.querySelector('#todo-block');
-const closeBtn = '&#9587';
+const closeBtn = '\u00D7';
+const parentContainer = 'div';
+const childElement = 'button';
 
 addBtnEl.addEventListener('click', onClick);
 
@@ -15,21 +17,29 @@ function onRemoveTask(e) {
 }
 
 function onClick() {
-    let todoData = document.createElement('div');
-    let closeButton = document.createElement('button');
-    todoData.textContent = inputEl.value.trim();
-    closeButton.textContent = '\u00D7';
+    if (inputEl.value) {
+	    createElement(inputEl, closeBtn, todoBlockEl, parentContainer, childElement);
+    } else {
+        alert('Enter todo list');
+    }
+	clearValue(inputEl);
+}
+
+function createElement(parentTitle, childTitle, container, parentTag, childTag) {
+    let todoData = document.createElement(parentTag);
+    let closeButton = document.createElement(childTag);
+    todoData.textContent = parentTitle.value.trim();
+    closeButton.textContent = childTitle;
     todoData.classList.add('todo-item');
     todoData.classList.add('not-compleat');
     closeButton.classList.add('close');
     todoData.id = `list-element${Math.random()}`;
     todoData.addEventListener('click', onCompleteTask);
     closeButton.addEventListener('click', onRemoveTask);
-    if (inputEl.value) {
-	    todoBlockEl.append(todoData);
-        todoData.append(closeButton);
-    } else {
-        alert('Enter todo list');
-    }
-	inputEl.value = '';
+    container.append(todoData);
+    todoData.append(closeButton);
+}
+
+function clearValue(el) {
+    el.value = '';
 }
