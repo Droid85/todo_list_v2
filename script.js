@@ -7,8 +7,15 @@ const childElement = 'button';
 
 addBtnEl.addEventListener('click', onClick);
 
+todoBlockEl.addEventListener('click', onCompleteTask, true);
+
 function onCompleteTask(e) {
-    e.target.classList.toggle('complete');
+    const elements = todoBlockEl.children;
+    for (let i = 0; i < elements.length; i++) {
+        if (e.target.id && elements[i].id && elements[i].id === e.target.id) {
+            elements[i].classList.toggle('complete');
+        }
+    }
 }
 
 function onRemoveTask(e) {
@@ -34,7 +41,6 @@ function createElement(parentTitle, childTitle, container, parentTag, childTag) 
     todoData.classList.add('not-compleat');
     closeButton.classList.add('close');
     todoData.id = `list-element${Math.random()}`;
-    todoData.addEventListener('click', onCompleteTask);
     closeButton.addEventListener('click', onRemoveTask);
     container.append(todoData);
     todoData.append(closeButton);
